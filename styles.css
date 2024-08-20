@@ -9,12 +9,13 @@ body {
 
 .container {
   width: 100%;
-  margin: 0 auto;
-  padding: 20px;
+  margin: 50px auto;
+  gap: 10px;
 }
 
-.section {
+section .section {
   max-width: 100vw;
+  margin-bottom: 20px;
 }
 
 #important-info section {
@@ -299,18 +300,19 @@ button {
   align-items: center;
   justify-content: space-between;
   padding-top: 40px;
+  max-width: 100vw;
 }
 .header_b .logo {
   width: 253px;
   height: 89px;
-  margin-left: 150px;
-  margin-right: 586px;
+  margin-left: 2vw;
 }
 .header_b nav {
   display: flex;
   gap: 10px;
-  align-items: center;
-  margin-right: 150px;
+  align-items: start;
+  justify-content: start;
+  margin-right: 2vw;
 }
 .header_b nav .btn {
   background: linear-gradient(to right, #ffac00, #ab00ff);
@@ -375,16 +377,15 @@ button {
   padding: 30px;
   margin-top: 51px;
   border: 5px solid;
-  max-width: 50vw;
+  max-width: 50%;
   -o-border-image: linear-gradient(to right, #ffac00, #ab00ff);
   border-image: linear-gradient(to right, #ffac00, #ab00ff);
   border-image-slice: 1;
 }
 #home .home-text .title {
   margin-top: 52px;
-  width: 772px;
-  height: 434px;
-  font-size: 50px;
+  font-size: 3vw;
+  flex-wrap: wrap;
   font-weight: 700;
   line-height: 75px;
   background: linear-gradient(to left, #ab00ff, #ffac00);
@@ -484,11 +485,7 @@ button {
   margin-top: 33px;
 }
 
-section {
-  padding: 13px 40px;
-}
 section .container {
-  max-width: 1200px;
   width: 100%;
 }
 section .title {
@@ -503,15 +500,31 @@ section .info-section {
   margin-bottom: 40px;
 }
 section .info-section .info-box {
-  width: 48%;
+  width: 50%;
   padding: 20px;
-  border: 2px solid;
-  border: 5px solid;
-  -o-border-image: linear-gradient(90deg, #ffdd00, #ff5722, #9c27b0, #ff00ff);
-  border-image: linear-gradient(90deg, #ffdd00, #ff5722, #9c27b0, #ff00ff);
-  border-image-slice: 1;
-  border-radius: 37px !important;
+  position: relative; /* Required for pseudo-element positioning */
+  border-radius: 37px; /* Apply border-radius */
+  overflow: hidden; /* Ensure the pseudo-element doesn't overflow the box */
 }
+
+section .info-section .info-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 37px; /* Match the border-radius */
+  padding: 4px; /* Adjust as needed */
+  background: linear-gradient(90deg, #ffdd00, #ff5722, #9c27b0, #ff00ff);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  z-index: 0;
+  pointer-events: none; /* Prevents interaction with the pseudo-element */
+}
+
 section .info-section .info-box h2 {
   background: linear-gradient(to right, #ffac00, #ab00ff);
   -webkit-background-clip: text;
@@ -532,12 +545,29 @@ section .info-section .info-box strong {
   background-color: #111;
   border-radius: 37px;
   padding: 20px;
-  border: 2px solid;
-  border: 5px solid;
-  -o-border-image: linear-gradient(90deg, #ffdd00, #ff5722, #9c27b0, #ff00ff);
-  border-image: linear-gradient(90deg, #ffdd00, #ff5722, #9c27b0, #ff00ff);
-  border-image-slice: 1;
+  position: relative; /* Required for positioning the h2 */
+  overflow: hidden; /* Ensure the pseudo-element and content stay within the border */
+  z-index: 1;
 }
+
+.alert-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 37px; /* Match the border-radius */
+  padding: 6px; /* Adjust the padding to increase the width of the border */
+  background: linear-gradient(90deg, #ffdd00, #ff5722, #9c27b0, #ff00ff);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  z-index: 0;
+  pointer-events: none;
+}
+
 .alert-section h2 {
   background: linear-gradient(to right, #ffac00, #00d1ff);
   -webkit-background-clip: text;
